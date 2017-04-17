@@ -67,13 +67,13 @@ input{
 input:focus{
     background-color: rgba(0, 255, 0, 0.05);
 }
-/* validate input classes*/
+/* validate input classes */
 .input-error{
     outline: none;
     border: 1px solid red;
     background-color: rgba(255, 0, 0, 0.15) !important;
 }
-.alert-warning{
+.alert-warning, #timer, #stop-msg, #work-indicator__wrapper, #break-indicator__wrapper{
     display: none;
 }
 .controls span{
@@ -86,3 +86,25 @@ input:focus{
     font-size: 4rem;
     font-weight: lighter;
 }
+#timer{
+    font-size: 4rem;
+    font-weight: 300;
+}
+/* work session style */
+body[data-session="work"]{
+    color: white;
+    background-color: black;
+}
+body[data-session="work"] #settings__wrapper{
+    display: none;
+}
+body[data-session="work"] #start-msg{
+    display: none;
+}
+body[data-session="work"] #timer,
+body[data-session="work"] #stop-msg,
+body[data-session="work"] #work-indicator__wrapper{
+    display: block;
+}
+
+/* break session style */

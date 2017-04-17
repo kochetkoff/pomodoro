@@ -18,7 +18,7 @@
     <!-- custom style -->
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
-<body>
+<body data-session="work">
 <div class="container-fluid">
     <div id="settings__wrapper" class="row text-center">
         <div id="settings__heading" class="col-12  mt-3">
@@ -44,6 +44,16 @@
             </div>
         </div>
     </div>
+    <div id="work-indicator__wrapper" class="row text-center">
+        <div id="work-indicator__heading" class="col-12  mt-4 mb-4">
+            <h1 class="mb-0">Work</h1>
+        </div>
+    </div>
+    <div id="break-indicator__wrapper" class="row text-center">
+        <div id="break-indicator__heading" class="col-12  mt-4 mb-4">
+            <h1 class="mb-0">Break</h1>
+        </div>
+    </div>
     <div class="row">
         <div id="circle__wrapper" class="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4 text-center">
             <div id="outer">
@@ -51,10 +61,8 @@
             </div>
             <div id="inner" class="d-flex flex-column justify-content-center">
                 <div id="start-msg" class="pt-2 pb-3">Start!</div>
-                <!--
                 <div id="timer"><span>25</span><span>:</span><span>00</span></div>
-                <div id="stop-msg">Click to stop</div>
-                -->
+                <div id="stop-msg" class="pb-2">Click to stop</div>
             </div>
         </div>
     </div>
