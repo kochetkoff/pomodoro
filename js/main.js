@@ -1,5 +1,7 @@
 $(function() {
     "use strict";
+    var MS_IN_MIN = 60000;
+    var MS_IN_SEC = 1000;
     // Make circle round and position inner in the center of outer
     function positionCircle(){
         var inner = document.getElementById('inner');
@@ -16,19 +18,13 @@ $(function() {
     window.onresize = function() {
         positionCircle();
     };
-    // Check if input in controls is an integer between 1 and 120
+    // Check if input in controls is an integer between 1 and 60
     var MIN_INPUT_VAL = 1;
-    var MAX_INPUT_VAL = 120;
+    var MAX_INPUT_VAL = 60;
     function isValidInput(inpValue){
         return !isNaN(parseInt(inpValue))&&(inpValue >= MIN_INPUT_VAL)&&(inpValue <= MAX_INPUT_VAL)&&(Math.floor(inpValue) === +inpValue);
     }
     // Validate input on input event
-    /* old function
-    function validateOnInput(event) {
-        var el = event.target;
-        isValidInput(el.value) ? el.classList.remove('input-error') : el.classList.add('input-error');
-    }
-    */
     function validateOnInput() {
         isValidInput(this.value) ? this.classList.remove('input-error') : this.classList.add('input-error');
     }
@@ -72,28 +68,36 @@ $(function() {
         var newVal = (+breakInput.value + 1);
         if (newVal <= MAX_INPUT_VAL) breakInput.value = newVal;
     };
-/*
-    // debugging and testing sessions
 
-    setTimeout(function() {
-        document.body.setAttribute('data-session', 'work');
-    }, 2000);
-    setTimeout(function() {
-        document.body.setAttribute('data-session', 'break');
-    }, 3000);
-    setTimeout(function() {
-       document.body.setAttribute('data-session', 'setup');
-    }, 7000);
-*/
+    // returns session name
     function whatSession() {
         return document.body.getAttribute('data-session');
     }
     function startSession() {
+        var workPeriod;
+        var breakPeriod;
+        var timeLeft;
+        var startTime;
+        var endTime;
+        workPeriod = parseInt(document.getElementById('work__input').value)*MS_IN_MIN;
+        breakPeriod = parseInt(document.getElementById('break__input').value)*MS_IN_MIN;
+
+        // renders time in circle
+        function renderTime(timeLeft) {
+            var d = new Date(timeLeft);
+            var m = d.getMinutes();
+            var s = d.getSeconds();
+            document.getElementById('timer__min').innerHTML =String(m);
+            document.getElementById('timer__sec').innerHTML = s < 10 ? "0" + s : String(s);
+        }
+
+        renderTime(workPeriod);
         document.body.setAttribute('data-session', 'work');
     }
     function stopSession() {
         document.body.setAttribute('data-session', 'setup');
     }
+
     inner.onclick = function (e) {
         if(whatSession() === "setup"){
             startSession();
@@ -101,6 +105,5 @@ $(function() {
             stopSession();
         }
     };
-
 
 });

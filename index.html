@@ -25,7 +25,7 @@
             <h4 class="mb-0">Setup pomodoro timer and start!</h4>
         </div>
         <div class="col-10 offset-1 alert alert-warning" role="alert" aria-hidden="true">
-            <strong>Invalid input!</strong> Provide integer number of minutes between 1 and 120.
+            <strong>Invalid input!</strong> Provide integer number of minutes between 1 and 60.
         </div>
         <div id="settings__work" class="col-sm-6">
             <h6 class="col-12 mb-0 mt-3">Work, <small>min.</small></h6>
@@ -61,7 +61,9 @@
             </div>
             <div id="inner" class="d-flex flex-column justify-content-center">
                 <div id="start-msg" class="pt-2 pb-3">Start!</div>
-                <div id="timer"><span>25</span><span>:</span><span>00</span></div>
+                <div id="timer">
+                    <span id="timer__min">25</span><span id="timer__spacer">:</span><span id="timer__sec">00</span>
+                </div>
                 <div id="stop-msg" class="pb-2 text-muted">Click to stop</div>
             </div>
         </div>
