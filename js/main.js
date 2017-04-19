@@ -73,5 +73,18 @@ $(function() {
         if (newVal <= MAX_INPUT_VAL) breakInput.value = newVal;
     };
 
+/*
+    // debugging and testing sessions
+
+    setTimeout(function() {
+        document.body.setAttribute('data-session', 'work');
+    }, 2000);
+    setTimeout(function() {
+        document.body.setAttribute('data-session', 'break');
+    }, 3000);
+    setTimeout(function() {
+       document.body.setAttribute('data-session', 'setup');
+    }, 7000);
+*/
 
 });

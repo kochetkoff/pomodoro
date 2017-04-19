@@ -70,7 +70,7 @@ input:focus{
 /* validate input classes */
 .input-error{
     outline: none;
-    border: 1px solid red;
+    border: 1px solid rgb(255, 0, 0);
     background-color: rgba(255, 0, 0, 0.15) !important;
 }
 .alert-warning, #timer, #stop-msg, #work-indicator__wrapper, #break-indicator__wrapper{
@@ -92,8 +92,8 @@ input:focus{
 }
 /* work session style */
 body[data-session="work"]{
-    color: white;
-    background-color: black;
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
 }
 body[data-session="work"] #settings__wrapper{
     display: none;
@@ -108,3 +108,18 @@ body[data-session="work"] #work-indicator__wrapper{
 }
 
 /* break session style */
+body[data-session="break"]{
+    color: white;
+    background-color: #6e96fa;
+}
+body[data-session="break"] #settings__wrapper{
+    display: none;
+}
+body[data-session="break"] #start-msg{
+    display: none;
+}
+body[data-session="break"] #timer,
+body[data-session="break"] #stop-msg,
+body[data-session="break"] #break-indicator__wrapper{
+    display: block;
+}
