@@ -53,9 +53,6 @@ input{
     border-radius: 50%;
     cursor: pointer;
 }
-#start-msg:hover{
-    color: rgb(0, 190, 0);
-}
 #outer{
     position: absolute;
     width: 100%;
@@ -79,8 +76,11 @@ input:focus{
 .controls span{
     cursor: pointer;
 }
-.increment:hover, .decrement:hover{
-    color: rgb(0, 190, 0);
+.increment:hover,
+.decrement:hover,
+#stop-msg:hover,
+#start-msg:hover{
+    color: rgb(0, 190, 0) !important;
 }
 #start-msg{
     font-size: 4rem;
@@ -90,6 +90,7 @@ input:focus{
     font-size: 4rem;
     font-weight: 300;
 }
+
 /* work session style */
 body[data-session="work"]{
     color: rgb(255, 255, 255);

@@ -72,7 +72,6 @@ $(function() {
         var newVal = (+breakInput.value + 1);
         if (newVal <= MAX_INPUT_VAL) breakInput.value = newVal;
     };
-
 /*
     // debugging and testing sessions
 
@@ -86,5 +85,22 @@ $(function() {
        document.body.setAttribute('data-session', 'setup');
     }, 7000);
 */
+    function whatSession() {
+        return document.body.getAttribute('data-session');
+    }
+    function startSession() {
+        document.body.setAttribute('data-session', 'work');
+    }
+    function stopSession() {
+        document.body.setAttribute('data-session', 'setup');
+    }
+    inner.onclick = function (e) {
+        if(whatSession() === "setup"){
+            startSession();
+        } else {
+            stopSession();
+        }
+    };
+
 
 });
