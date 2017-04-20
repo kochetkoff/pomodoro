@@ -55,12 +55,12 @@ $(function() {
     var breakPlus = document.querySelector('#settings__break .increment');
 
     // Increment and decrement inputs on click
-    workMinus.onclick = function () {
+    workMinus.onclick = function() {
         if(!isValidInput(workInput.value)) return;
         var newVal = (+workInput.value - 1);
         if (newVal >= MIN_INPUT_VAL) workInput.value = newVal;
     };
-    workPlus.onclick = function () {
+    workPlus.onclick = function() {
         if(!isValidInput(workInput.value)) return;
         var newVal = (+workInput.value + 1);
         if (newVal <= MAX_INPUT_VAL) workInput.value = newVal;
@@ -81,11 +81,20 @@ $(function() {
         return document.body.getAttribute('data-session');
     }
 
-    // renders time in circle
+    /*  Old render function through new Date()
     function renderTime(timeLeftSec) {
         var d = new Date(timeLeftSec*1000);
         var m = d.getMinutes();
         var s = d.getSeconds();
+        document.getElementById('timer__min').innerHTML =String(m);
+        document.getElementById('timer__sec').innerHTML = s < 10 ? "0" + s : String(s);
+    }
+    */
+
+    // renders time in circle
+    function renderTime(timeLeft){
+        var s = timeLeft%60;
+        var m = (timeLeft - s)/60;
         document.getElementById('timer__min').innerHTML =String(m);
         document.getElementById('timer__sec').innerHTML = s < 10 ? "0" + s : String(s);
     }
