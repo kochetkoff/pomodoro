@@ -1,7 +1,6 @@
 $(function() {
     "use strict";
-    var MS_IN_MIN = 60000;
-    var MS_IN_SEC = 1000;
+    var SEC_IN_MIN = 60;
 
     // Make circle round and position inner in the center of outer
     function positionCircle(){
@@ -81,16 +80,6 @@ $(function() {
         return document.body.getAttribute('data-session');
     }
 
-    /*  Old render function through new Date()
-    function renderTime(timeLeftSec) {
-        var d = new Date(timeLeftSec*1000);
-        var m = d.getMinutes();
-        var s = d.getSeconds();
-        document.getElementById('timer__min').innerHTML =String(m);
-        document.getElementById('timer__sec').innerHTML = s < 10 ? "0" + s : String(s);
-    }
-    */
-
     // renders time in circle
     function renderTime(timeLeft){
         var s = timeLeft%60;
@@ -99,17 +88,15 @@ $(function() {
         document.getElementById('timer__sec').innerHTML = s < 10 ? "0" + s : String(s);
     }
 
-
-
     // starts session after setup finished and start clicked
     function startSession() {
-        var workPeriod = parseInt(document.getElementById('work__input').value)*MS_IN_MIN;
-        var breakPeriod = parseInt(document.getElementById('break__input').value)*MS_IN_MIN;
+        var workPeriod = parseInt(document.getElementById('work__input').value)*SEC_IN_MIN;
+        var breakPeriod = parseInt(document.getElementById('break__input').value)*SEC_IN_MIN;
 
         // starts work timer
         function startWorkTimer() {
-            renderTime(workPeriod/1000);
-            var timeLeftSec = workPeriod/1000;
+            renderTime(workPeriod);
+            var timeLeftSec = workPeriod;
             startSession.timer = setInterval(function(){
                 if (timeLeftSec > 0) {
                     renderTime(timeLeftSec--)
@@ -123,8 +110,8 @@ $(function() {
 
         // starts break timer
         function startBreakTimer() {
-            renderTime(breakPeriod/1000);
-            var timeLeftSec = breakPeriod/1000;
+            renderTime(breakPeriod);
+            var timeLeftSec = breakPeriod;
             startSession.timer = setInterval(function(){
                 if (timeLeftSec > 0) {
                     renderTime(timeLeftSec--)
@@ -146,6 +133,7 @@ $(function() {
         if(startSession.timer) clearInterval(startSession.timer);
     }
     // starts or stops session on click
+    var inner = document.getElementById('inner');
     inner.onclick = function () {
         if(whatSession() === "setup"){
             startSession();
