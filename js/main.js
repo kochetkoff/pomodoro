@@ -96,10 +96,10 @@ $(function() {
         // starts work timer
         function startWorkTimer() {
             renderTime(workPeriod);
-            var timeLeftSec = workPeriod;
+            var timeLeft = workPeriod;
             startSession.timer = setInterval(function(){
-                if (timeLeftSec > 0) {
-                    renderTime(timeLeftSec--)
+                if (timeLeft > 0) {
+                    renderTime(timeLeft--)
                 } else {
                     clearInterval(startSession.timer);
                     startBreakTimer();
@@ -111,10 +111,10 @@ $(function() {
         // starts break timer
         function startBreakTimer() {
             renderTime(breakPeriod);
-            var timeLeftSec = breakPeriod;
+            var timeLeft = breakPeriod;
             startSession.timer = setInterval(function(){
-                if (timeLeftSec > 0) {
-                    renderTime(timeLeftSec--)
+                if (timeLeft > 0) {
+                    renderTime(timeLeft--)
                 } else {
                     clearInterval(startSession.timer);
                     startWorkTimer();
@@ -132,6 +132,7 @@ $(function() {
         document.body.setAttribute('data-session', 'setup');
         if(startSession.timer) clearInterval(startSession.timer);
     }
+    
     // starts or stops session on click
     var inner = document.getElementById('inner');
     inner.onclick = function () {
