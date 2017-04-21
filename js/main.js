@@ -136,11 +136,23 @@ $(function() {
     // starts or stops session on click
     var inner = document.getElementById('inner');
     inner.onclick = function () {
+        // Prevent clicking if inputs are invalid
+        var workInputVal = document.querySelector('#work__input').value;
+        var breakInputVal = document.querySelector('#break__input').value;
+        if (!(isValidInput(workInputVal) && isValidInput(breakInputVal))) return false;
+
         if(whatSession() === "setup"){
             startSession();
         } else {
             stopSession();
         }
     };
+
+    /* Function for rotation test
+    var t = 0;
+    setInterval(function(){
+        outer.style.transform = "rotate(-" + t++ + "deg)";
+    }, 1000);
+    */
 
 });
