@@ -90,7 +90,11 @@ input:focus{
     font-size: 4rem;
     font-weight: 300;
 }
-
+#timer__min,
+#timer__sec{
+    display: inline-block;
+    width: 5rem;
+}
 /* work session style */
 body[data-session="work"]{
     color: rgb(255, 255, 255);

@@ -84,7 +84,7 @@ $(function() {
     function renderTime(timeLeft){
         var s = timeLeft%60;
         var m = (timeLeft - s)/60;
-        document.getElementById('timer__min').innerHTML =String(m);
+        document.getElementById('timer__min').innerHTML = m < 10 ? "0" + m : String(m);
         document.getElementById('timer__sec').innerHTML = s < 10 ? "0" + s : String(s);
     }
 
@@ -132,7 +132,7 @@ $(function() {
         document.body.setAttribute('data-session', 'setup');
         if(startSession.timer) clearInterval(startSession.timer);
     }
-    
+
     // starts or stops session on click
     var inner = document.getElementById('inner');
     inner.onclick = function () {
