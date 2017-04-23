@@ -1,11 +1,12 @@
 $(function() {
     "use strict";
     var SEC_IN_MIN = 60;
-
+    var inner = document.getElementById('inner');
+    var outer = document.getElementById('outer');
     // Make circle round and position inner in the center of outer
     function positionCircle(){
-        var inner = document.getElementById('inner');
-        var outer = document.getElementById('outer');
+        //var inner = document.getElementById('inner');
+        //var outer = document.getElementById('outer');
         var pointer = document.getElementsByTagName('img')[0];
         //Make inner and outer width equal to height
         inner.style.height = inner.offsetWidth + "px";
@@ -145,7 +146,7 @@ $(function() {
     }
 
     // starts or stops session on click
-    var inner = document.getElementById('inner');
+
     inner.onclick = function () {
         // Prevent clicking if inputs are invalid
         var workInputVal = document.querySelector('#work__input').value;
