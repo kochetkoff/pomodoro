@@ -97,11 +97,16 @@ $(function() {
         function startWorkTimer() {
             renderTime(workPeriod);
             var timeLeft = workPeriod;
+            var deg = 0;
+            var inc = 360/workPeriod;
             startSession.timer = setInterval(function(){
                 if (timeLeft > 0) {
-                    renderTime(timeLeft--)
+                    renderTime(timeLeft--);
+                    rotate(outer, deg);
+                    deg += inc;
                 } else {
                     clearInterval(startSession.timer);
+                    rotate(outer, 0);
                     startBreakTimer();
                 }
             }, 1000);
@@ -112,11 +117,16 @@ $(function() {
         function startBreakTimer() {
             renderTime(breakPeriod);
             var timeLeft = breakPeriod;
+            var deg = 0;
+            var inc = 360/breakPeriod;
             startSession.timer = setInterval(function(){
                 if (timeLeft > 0) {
-                    renderTime(timeLeft--)
+                    renderTime(timeLeft--);
+                    rotate(outer, deg);
+                    deg += inc;
                 } else {
                     clearInterval(startSession.timer);
+                    rotate(outer, 0);
                     startWorkTimer();
                 }
             }, 1000);
@@ -129,6 +139,7 @@ $(function() {
 
     // stops timer, work or break session and returns to setup
     function stopSession() {
+        rotate(outer, 0);
         document.body.setAttribute('data-session', 'setup');
         if(startSession.timer) clearInterval(startSession.timer);
     }
@@ -148,11 +159,10 @@ $(function() {
         }
     };
 
-    /* Function for rotation test
-    var t = 0;
-    setInterval(function(){
-        outer.style.transform = "rotate(-" + t++ + "deg)";
-    }, 1000);
-    */
+    // Function to rotate el anticlockwise on deg degrees
+    function rotate(el, deg){
+        deg = deg || 0;
+        el.style.transform = "rotate(-" + deg + "deg)";
+    }
 
 });

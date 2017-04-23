@@ -58,7 +58,6 @@ input{
     width: 100%;
     left: 0;
     top: 0;
-    /* border: 1px solid rgb(0, 0, 255); */
     border-radius: 50%;
 }
 input:focus{
