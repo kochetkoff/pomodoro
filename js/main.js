@@ -5,8 +5,6 @@ $(function() {
     var outer = document.getElementById('outer');
     // Make circle round and position inner in the center of outer
     function positionCircle(){
-        //var inner = document.getElementById('inner');
-        //var outer = document.getElementById('outer');
         var pointer = document.getElementsByTagName('img')[0];
         //Make inner and outer width equal to height
         inner.style.height = inner.offsetWidth + "px";
@@ -89,7 +87,7 @@ $(function() {
         document.getElementById('timer__sec').innerHTML = s < 10 ? "0" + s : String(s);
     }
 
-    // Function to rotate el anticlockwise on deg degrees
+    // rotates el anticlockwise on deg degrees
     function rotate(el, deg){
         deg = deg || 0;
         el.style.transform = "rotate(-" + deg + "deg)";
@@ -107,6 +105,10 @@ $(function() {
     }
     function startAlarm() {
         alarm.play();
+    }
+    function stopAlarm() {
+        alarm.pause();
+        alarm.currentTime = 0;
     }
 
     // starts session after setup finished and start clicked
@@ -166,6 +168,7 @@ $(function() {
 
     // stops timer, work or break session and returns to setup
     function stopSession() {
+        stopAlarm();
         stopTick();
         rotate(outer, 0);
         document.body.setAttribute('data-session', 'setup');
