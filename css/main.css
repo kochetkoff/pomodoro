@@ -127,3 +127,25 @@ body[data-session="break"] #stop-msg,
 body[data-session="break"] #break-indicator__wrapper{
     display: block;
 }
+#audio__switch{
+    position: fixed;
+    cursor: pointer;
+    width: 1rem;
+    top: 0.3rem;
+    right: 2.2rem;
+    font-family: FontAwesome;
+    color: rgba(125, 125, 125, 0.8);
+    font-size: 2.5rem;
+}
+#audio__switch[data-audio="off"]:hover{
+    color: rgb(0, 190, 0) !important;
+}
+#audio__switch[data-audio="on"]:hover{
+    color: rgb(255, 0, 0) !important;
+}
+#audio__switch[data-audio="on"]::before{
+    content: '\f028';
+}
+#audio__switch[data-audio="off"]::before{
+    content: '\f026';
+}
