@@ -89,6 +89,26 @@ $(function() {
         document.getElementById('timer__sec').innerHTML = s < 10 ? "0" + s : String(s);
     }
 
+    // Function to rotate el anticlockwise on deg degrees
+    function rotate(el, deg){
+        deg = deg || 0;
+        el.style.transform = "rotate(-" + deg + "deg)";
+    }
+
+    // Audio variables and functions
+    var alarm = document.getElementById('audio__alarm');
+    var tick =  document.getElementById('audio__tick');
+    function startTick() {
+        tick.play();
+    }
+    function stopTick() {
+        tick.pause();
+        tick.currentTime = 0;
+    }
+    function startAlarm() {
+        alarm.play();
+    }
+
     // starts session after setup finished and start clicked
     function startSession() {
         var workPeriod = parseInt(document.getElementById('work__input').value)*SEC_IN_MIN;
@@ -108,10 +128,13 @@ $(function() {
                 } else {
                     clearInterval(startSession.timer);
                     rotate(outer, 0);
+                    stopTick();
+                    startAlarm();
                     startBreakTimer();
                 }
             }, 1000);
             document.body.setAttribute('data-session', 'work');
+            startTick();
         }
 
         // starts break timer
@@ -128,10 +151,13 @@ $(function() {
                 } else {
                     clearInterval(startSession.timer);
                     rotate(outer, 0);
+                    stopTick();
+                    startAlarm();
                     startWorkTimer();
                 }
             }, 1000);
             document.body.setAttribute('data-session', 'break');
+            startTick();
         }
 
         // session always starts with work period
@@ -140,6 +166,7 @@ $(function() {
 
     // stops timer, work or break session and returns to setup
     function stopSession() {
+        stopTick();
         rotate(outer, 0);
         document.body.setAttribute('data-session', 'setup');
         if(startSession.timer) clearInterval(startSession.timer);
@@ -159,11 +186,5 @@ $(function() {
             stopSession();
         }
     };
-
-    // Function to rotate el anticlockwise on deg degrees
-    function rotate(el, deg){
-        deg = deg || 0;
-        el.style.transform = "rotate(-" + deg + "deg)";
-    }
 
 });
