@@ -4,6 +4,7 @@ $(function() {
     var inner = document.getElementById('inner');
     var outer = document.getElementById('outer');
     var audioSwitch = document.getElementById('audio__switch');
+
     // Make circle round and position inner in the center of outer
     function positionCircle(){
         var pointer = document.getElementsByTagName('img')[0];
@@ -111,7 +112,9 @@ $(function() {
         alarm.pause();
         alarm.currentTime = 0;
     }
-
+    function isAudioOn() {
+        return audioSwitch.getAttribute('data-audio') === "on";
+    }
     // starts session after setup finished and start clicked
     function startSession() {
         var workPeriod = parseInt(document.getElementById('work__input').value)*SEC_IN_MIN;
@@ -177,8 +180,7 @@ $(function() {
     }
 
     // starts or stops session on click
-
-    inner.onclick = function () {
+    inner.onclick = function() {
         // Prevent clicking if inputs are invalid
         var workInputVal = document.querySelector('#work__input').value;
         var breakInputVal = document.querySelector('#break__input').value;
@@ -191,17 +193,14 @@ $(function() {
         }
     };
 
-    function isAudioOn() {
-        return audioSwitch.getAttribute('data-audio') === "on";
-    }
     audioSwitch.onclick = function() {
         if (isAudioOn()) {
             this.setAttribute('data-audio', "off");
             stopTick();
+            stopAlarm();
         } else {
             this.setAttribute('data-audio', "on");
             if(!(whatSession() === "setup")) startTick();
         }
     };
-
 });
