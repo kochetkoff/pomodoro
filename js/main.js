@@ -3,6 +3,7 @@ $(function() {
     var SEC_IN_MIN = 60;
     var inner = document.getElementById('inner');
     var outer = document.getElementById('outer');
+    var audioSwitch = document.getElementById('audio__switch');
     // Make circle round and position inner in the center of outer
     function positionCircle(){
         var pointer = document.getElementsByTagName('img')[0];
@@ -131,12 +132,12 @@ $(function() {
                     clearInterval(startSession.timer);
                     rotate(outer, 0);
                     stopTick();
-                    startAlarm();
+                    if(isAudioOn()) startAlarm();
                     startBreakTimer();
                 }
             }, 1000);
             document.body.setAttribute('data-session', 'work');
-            startTick();
+            if(isAudioOn()) startTick();
         }
 
         // starts break timer
@@ -154,12 +155,12 @@ $(function() {
                     clearInterval(startSession.timer);
                     rotate(outer, 0);
                     stopTick();
-                    startAlarm();
+                    if(isAudioOn()) startAlarm();
                     startWorkTimer();
                 }
             }, 1000);
             document.body.setAttribute('data-session', 'break');
-            startTick();
+            if(isAudioOn()) startTick();
         }
 
         // session always starts with work period
@@ -187,6 +188,19 @@ $(function() {
             startSession();
         } else {
             stopSession();
+        }
+    };
+
+    function isAudioOn() {
+        return audioSwitch.getAttribute('data-audio') === "on";
+    }
+    audioSwitch.onclick = function() {
+        if (isAudioOn()) {
+            this.setAttribute('data-audio', "off");
+            stopTick();
+        } else {
+            this.setAttribute('data-audio', "on");
+            if(!(whatSession() === "setup")) startTick();
         }
     };
 
