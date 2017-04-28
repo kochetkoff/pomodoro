@@ -33,8 +33,10 @@ html {
 
 body{
     color: rgba(0, 0, 0, 0.85);
+    transition: background-color 1s ease-in-out;
 }
 input{
+    background-color: rgba(255, 255, 255, 0);
     border: none;
     display: inline-block !important;
     width: 4rem;
@@ -59,6 +61,7 @@ input{
     left: 0;
     top: 0;
     border-radius: 50%;
+    transition: transform 0.2s ease-in-out;
 }
 input:focus{
     background-color: rgba(0, 255, 0, 0.05);
@@ -148,4 +151,11 @@ body[data-session="break"] #break-indicator__wrapper{
 }
 #audio__switch[data-audio="off"]::before{
     content: '\f026';
+}
+
+/* prevent timer from dragging when scrollbar appears while circle rotates */
+body[data-session="break"],
+body[data-session="work"]
+{
+    overflow: hidden !important;
 }

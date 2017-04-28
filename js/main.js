@@ -102,16 +102,28 @@ $(function() {
         tick.play();
     }
     function stopTick() {
-        tick.pause();
-        tick.currentTime = 0;
+        try {
+            tick.pause();
+            tick.currentTime = 0;
+        }
+        catch (e) {
+            // Fail silently but show in F12 developer tools console
+            console.error("Error:" + e);
+        }
     }
     function startAlarm() {
         alarm.play();
     }
     function stopAlarm() {
-        alarm.pause();
-        alarm.currentTime = 0;
-    }
+        try {
+            alarm.pause();
+            alarm.currentTime = 0;
+        }
+        catch (e) {
+            // Fail silently but show in F12 developer tools console
+            console.error("Error:" + e);
+        }
+     }
     function isAudioOn() {
         return audioSwitch.getAttribute('data-audio') === "on";
     }
