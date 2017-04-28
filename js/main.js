@@ -99,7 +99,12 @@ $(function() {
     var alarm = document.getElementById('audio__alarm');
     var tick =  document.getElementById('audio__tick');
     function startTick() {
-        tick.play();
+        try {
+            tick.play();
+        }
+        catch (e) {
+            console.log("Error:" + e);
+        }
     }
     function stopTick() {
         try {
@@ -107,12 +112,16 @@ $(function() {
             tick.currentTime = 0;
         }
         catch (e) {
-            // Fail silently but show in F12 developer tools console
-            console.error("Error:" + e);
+            console.log("Error:" + e);
         }
     }
     function startAlarm() {
-        alarm.play();
+        try {
+            alarm.play();
+        }
+        catch (e) {
+            console.log("Error:" + e);
+        }
     }
     function stopAlarm() {
         try {
@@ -120,8 +129,7 @@ $(function() {
             alarm.currentTime = 0;
         }
         catch (e) {
-            // Fail silently but show in F12 developer tools console
-            console.error("Error:" + e);
+            console.log("Error:" + e);
         }
      }
     function isAudioOn() {
