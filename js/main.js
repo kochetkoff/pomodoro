@@ -139,7 +139,6 @@ $(function() {
     function startSession() {
         var workPeriod = parseInt(document.getElementById('work__input').value)*SEC_IN_MIN;
         var breakPeriod = parseInt(document.getElementById('break__input').value)*SEC_IN_MIN;
-
         // starts work timer
         function startWorkTimer() {
             renderTime(workPeriod);
@@ -162,7 +161,6 @@ $(function() {
             document.body.setAttribute('data-session', 'work');
             if(isAudioOn()) startTick();
         }
-
         // starts break timer
         function startBreakTimer() {
             renderTime(breakPeriod);
@@ -185,7 +183,6 @@ $(function() {
             document.body.setAttribute('data-session', 'break');
             if(isAudioOn()) startTick();
         }
-
         // session always starts with work period
         startWorkTimer();
     }

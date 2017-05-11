@@ -6,31 +6,26 @@ html {
         font-size: 16px;
     }
 }
-
 @media (min-width: 768px) {
     html {
         font-size: 18px;
     }
 }
-
 @media (min-width: 992px) {
     html {
         font-size: 20px;
     }
 }
-
 @media (min-width: 1200px) {
     html {
         font-size: 22px;
     }
 }
-
 @media (min-width: 1800px) {
     html {
         font-size: 28px;
     }
 }
-
 body{
     color: rgba(0, 0, 0, 0.85);
     transition: background-color 1s ease-in-out;
@@ -152,7 +147,6 @@ body[data-session="break"] #break-indicator__wrapper{
 #audio__switch[data-audio="off"]::before{
     content: '\f026';
 }
-
 /* prevent timer from dragging when scrollbar appears while circle rotates */
 body[data-session="break"],
 body[data-session="work"]
